@@ -104,6 +104,11 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-cdk/aws-ssm",
+      "version": "^1.130.0",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-cdk/core",
       "version": "^1.130.0",
       "type": "runtime"

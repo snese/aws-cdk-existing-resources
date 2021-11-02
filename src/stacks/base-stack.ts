@@ -1,3 +1,4 @@
+import * as iam from '@aws-cdk/aws-iam';
 import * as ec2 from '@aws-cdk/aws-ec2';
 import * as elbv2 from '@aws-cdk/aws-elasticloadbalancingv2';
 import * as cdk from '@aws-cdk/core';
@@ -28,6 +29,7 @@ export class BaseStack extends cdk.Stack {
       ],
     });
 
+
     // Frontend LB (internet)
     new elbv2.ApplicationLoadBalancer(this, 'LB-FE', {
       vpc,
@@ -38,6 +40,20 @@ export class BaseStack extends cdk.Stack {
     new elbv2.ApplicationLoadBalancer(this, 'LB-BE', {
       vpc,
       internetFacing: false,
+    });
+
+    // IAM EC2 Role
+    new iam.Role(this, 'EC2-Role', {
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+      description: 'Pre-build EC2 Role',
+      managedPolicies: [
+        iam.ManagedPolicy.fromAwsManagedPolicyName(
+          'AmazonS3FullAccess',
+        ),
+        iam.ManagedPolicy.fromAwsManagedPolicyName(
+          'AmazonSSMManagedInstanceCore',
+        ),
+      ],
     });
   }
 }

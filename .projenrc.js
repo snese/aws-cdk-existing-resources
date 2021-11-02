@@ -9,6 +9,7 @@ const project = new AwsCdkTypeScriptApp({
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-iam',
     '@aws-cdk/aws-elasticloadbalancingv2',
+    '@aws-cdk/aws-ssm',
   ],
   // cdkDependencies: undefined,        /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
   // deps: [],                          /* Runtime dependencies of this module. */
